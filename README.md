@@ -28,6 +28,15 @@ Walmart adalah salah satu perusahaan ritel terbesar di dunia. Kemampuan untuk me
 
 ## Data Understanding
 ### Dataset
+| Jenis              | Keterangan                    |
+|--------------------|-------------------------------|
+| Title              | Walmart Condensed Sales Data  |
+| Source             | [https://www.kaggle.com/datasets/souravprakashai/walmart-condensed-sales-data]|
+| License            |                               |
+| Visibility         |                               |
+| Tags               |                               |
+| Usability          |                               |
+
 Dataset yang digunakan adalah data historis penjualan Walmart yang mencakup fitur-fitur berikut:
 - Store: ID toko.
 - Date: Tanggal penjualan.
@@ -90,9 +99,17 @@ Metrik Evaluasi yang Digunakan :
 **Hasil Evaluasi**
 Random Forest memberikan performa terbaik dengan R² sebesar 0.96, menunjukkan model dapat menjelaskan 96% variansi data.
 
-## Kesimpulan
+**Dampak Terhadap Business Understanding**
+1. Menjawab Problem Statement:
+Model Random Forest berhasil memprediksi penjualan mingguan dengan akurasi tinggi (R² = 0.96).
+2. Mencapai Goals:
+Model berhasil mengidentifikasi hubungan signifikan antara variabel seperti Holiday_Flag dan Weekly_Sales.
+3. Solusi yang Dirancang:
+Hyperparameter tuning memberikan dampak positif terhadap peningkatan performa model.
+
+**Kesimpulan**
 Random Forest adalah model terbaik untuk prediksi penjualan mingguan Walmart.
 Model dapat digunakan untuk membantu manajemen inventaris dan perencanaan strategi promosi.
 
-## Saran
+**Saran**
 Untuk pengembangan lebih lanjut, pertimbangkan untuk memasukkan variabel tambahan seperti jenis produk atau data promosi.

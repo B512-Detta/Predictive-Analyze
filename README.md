@@ -31,13 +31,20 @@ Walmart adalah salah satu perusahaan ritel terbesar di dunia. Kemampuan untuk me
 | Jenis              | Keterangan                    |
 |--------------------|-------------------------------|
 | Title              | Walmart Condensed Sales Data  |
-| Source             | [https://www.kaggle.com/datasets/souravprakashai/walmart-condensed-sales-data]|
-| License            |                               |
-| Visibility         |                               |
-| Tags               |                               |
-| Usability          |                               |
+| Source             | https://www.kaggle.com/datasets/souravprakashai/walmart-condensed-sales-data|
+| License            | https://cdla.dev/permissive-1-0/|
+| Visibility         | Public                        |
+| Tags               | Retail and Shopping, Tabular, Data Visualization|
+| Usability          | 9.41                          |
 
-Dataset yang digunakan adalah data historis penjualan Walmart yang mencakup fitur-fitur berikut:
+**Dataset yang digunakan adalah data historis penjualan Walmart, yang mencakup fitur berikut:**
+- Jumlah Data: 421.570 baris dan 8 kolom.
+- Kondisi Data:
+    - Missing Values: Tidak ada nilai kosong.
+    - Duplicate Values: Tidak ada duplikasi.
+    - Outliers: Outlier ditemukan pada variabel Weekly_Sales.
+
+**Variable - variable pada dataset:**
 - Store: ID toko.
 - Date: Tanggal penjualan.
 - Weekly_Sales: Penjualan mingguan (target).

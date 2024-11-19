@@ -38,7 +38,7 @@ Walmart adalah salah satu perusahaan ritel terbesar di dunia. Kemampuan untuk me
 | Usability          | 9.41                          |
 
 **Dataset yang digunakan adalah data historis penjualan Walmart, yang mencakup fitur berikut:**
-- Jumlah Data: 421.570 baris dan 8 kolom.
+- Jumlah Data: 6435 baris dan 8 kolom.
 - Kondisi Data:
     - Missing Values: Tidak ada nilai kosong.
     - Duplicate Values: Tidak ada duplikasi.
@@ -56,33 +56,41 @@ Walmart adalah salah satu perusahaan ritel terbesar di dunia. Kemampuan untuk me
 
 ### Exploratory Data Analysis (EDA)
 - Distribusi Penjualan Mingguan (Weekly_Sales): Distribusi menunjukkan adanya outlier, terutama di minggu-minggu dengan liburan nasional.
+  ![image](https://github.com/user-attachments/assets/b6e30a51-628d-440a-bb28-ffae821c7bce)
+
 - Korelasi Antar Variabel: Variabel seperti Holiday_Flag dan Temperature menunjukkan hubungan moderat terhadap Weekly_Sales.
 - Tren Penjualan Mingguan: Tren menunjukkan fluktuasi penjualan yang signifikan selama liburan.
 
 ## Data Preparation
 1. Normalisasi Format Tanggal: Kolom Date yang berisi campuran format (dd/mm/yyyy dan dd-mm-yyyy) dinormalisasi menggunakan fungsi .str.replace() dan dikonversi ke tipe datetime.
+   Pada dataset ini ternyata terdapat perbedaan format jadi perlu dihandle dengan beberapa cara seperti mengganti data tanggal '/' dengan '-' setelah itu mengubah ke format datetime yang telah      ditentukan. Saya juga menambahkan teknik handle lainnya yaitu menghapus baris yang memiliki data tidak valid (Nat) namun ternyata tidak ada data yang tida valid.
 2. Feature Engineering:
     - Menambahkan fitur baru seperti Year, Month, dan Week dari kolom Date.
 3. Scaling: Variabel numerik (Temperature, Fuel_Price, CPI, Unemployment, Weekly_Sales) dinormalisasi menggunakan MinMaxScaler agar berada dalam rentang [0,1].
-4. Train-Test Split: Dataset dibagi menjadi 80% training dan 20% testing.
+4. Train-Test Split: Dataset dibagi menjadi 80% training dan 20% testing. Bagian memilih fitur(x) dan target (y), Kolom target (Weekly_Sales) dipisahkan dari fitur-fitur prediktor untuk         
+   memastikan proses modeling berjalan dengan benar. Fitur prediktor meliputi informasi toko, data ekonomi, dan waktu.
 
 ## Modeling
-1. Model 1: Linear Regression (Baseline)
-Linear Regression digunakan sebagai baseline model:
-Hasil Evaluasi:
-MAE: 0.12
-MSE: 0.02
-R²: 0.16
-Linear Regression menunjukkan performa yang kurang baik karena hanya menangkap hubungan linear antar variabel.
-
-2. Model 2: Random Forest Regressor
-Random Forest digunakan untuk menangkap hubungan non-linear:
-Hasil Evaluasi:
-MAE: 0.02
-MSE: 0.00
-R²: 0.96
-Random Forest memberikan performa yang jauh lebih baik dibandingkan Linear Regression.
-
+1. Model 1: Linear Regression
+    - Cara Kerja:
+      Linear Regression adalah algoritma yang memodelkan hubungan linear antara variabel prediktor dan target. Model ini menghitung parameter (koefisien) yang meminimalkan jumlah kuadrat error         (least squares).
+    - Parameter:
+      Parameter default digunakan:
+      fit_intercept=True: Mengestimasi intercept (bias).
+      normalize=False: Tidak dilakukan normalisasi tambahan.
+2. Model 2 : Random Forest Regressor
+   - Cara Kerja:
+     Random Forest adalah algoritma ensemble yang menggabungkan prediksi dari beberapa pohon keputusan. Model ini bekerja dengan membagi data secara acak, membuat beberapa pohon keputusan, dan 
+     menggabungkan hasil prediksi.
+   - Parameter Default:
+     n_estimators=100: Menggunakan 100 pohon dalam ensemble.
+     max_depth=None: Tidak ada batasan kedalaman pohon.
+     random_state=42: Untuk hasil yang konsisten.
+   - Hyperparameter Tuning:
+     Hyperparameter dioptimalkan menggunakan GridSearchCV.
+     Parameter terbaik:
+     n_estimators=200
+     max_depth=20
 - Kelebihan dan Kekurangan Algoritma
 Linear Regression:
 Kelebihan: Sederhana, cepat, mudah diinterpretasi.
@@ -91,17 +99,34 @@ Random Forest Regressor:
 Kelebihan: Menangkap hubungan non-linear, robust terhadap outlier.
 Kekurangan: Lebih lambat dan sulit diinterpretasi.
 
-| Model              | MAE      | MSE      | R²      |
-|--------------------|----------|----------|---------|
-| Linear Regression  | 0.12     | 0.02     | 0.16    |
-| Random Forest      | 0.02     | 0.00     | 0.96    |
-
 
 ## Evaluation
 Metrik Evaluasi yang Digunakan :
 1. Mean Absolute Error (MAE): Mengukur rata-rata absolut error prediksi.
 2. Mean Squared Error (MSE): Memberikan penalti lebih besar pada error yang besar.
 3. R² (R-squared): Proporsi variansi target yang dijelaskan oleh model.
+
+A. Model 1: Linear Regression (Baseline)
+Linear Regression digunakan sebagai baseline model:
+Hasil Evaluasi:
+MAE: 0.12
+MSE: 0.02
+R²: 0.16
+Linear Regression menunjukkan performa yang kurang baik karena hanya menangkap hubungan linear antar variabel.
+
+B. Model 2: Random Forest Regressor
+Random Forest digunakan untuk menangkap hubungan non-linear:
+Hasil Evaluasi:
+MAE: 0.02
+MSE: 0.00
+R²: 0.96
+Random Forest memberikan performa yang jauh lebih baik dibandingkan Linear Regression.
+
+
+| Model              | MAE      | MSE      | R²      |
+|--------------------|----------|----------|---------|
+| Linear Regression  | 0.12     | 0.02     | 0.16    |
+| Random Forest      | 0.02     | 0.00     | 0.96    |
 
 **Hasil Evaluasi**
 Random Forest memberikan performa terbaik dengan R² sebesar 0.96, menunjukkan model dapat menjelaskan 96% variansi data.

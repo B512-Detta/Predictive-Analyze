@@ -56,10 +56,26 @@ Walmart adalah salah satu perusahaan ritel terbesar di dunia. Kemampuan untuk me
 
 ### Exploratory Data Analysis (EDA)
 - Distribusi Penjualan Mingguan (Weekly_Sales): Distribusi menunjukkan adanya outlier, terutama di minggu-minggu dengan liburan nasional.
+  
   ![image](https://github.com/user-attachments/assets/b6e30a51-628d-440a-bb28-ffae821c7bce)
+  Sebagian besar penjualan mingguan terkonsentrasi pada nilai rendah (0.1 hingga 0.3 setelah normalisasi). Berikutnya distribusi bersifat positif skewed, menunjukkan ada beberapa outlier dengan 
+  penjualan sangat tinggi. Dan yang terakhir, distribusi ini penting untuk memahami pola penjualan secara keseluruhan dan menentukan jika diperlukan perlakuan khusus terhadap outlier.
 
-- Korelasi Antar Variabel: Variabel seperti Holiday_Flag dan Temperature menunjukkan hubungan moderat terhadap Weekly_Sales.
 - Tren Penjualan Mingguan: Tren menunjukkan fluktuasi penjualan yang signifikan selama liburan.
+
+  ![image](https://github.com/user-attachments/assets/dcaa53d6-426b-4479-9fd5-6a86957a7cc1)
+  Puncak penjualan terjadi di sekitar bulan liburan, seperti Natal dan Thanksgiving, di mana penjualan naik secara signifikan. Berikutnya, penjualan menunjukkan pola musiman, dengan penurunan      yang konsisten setelah periode liburan. Dan yang terakhir, informasi ini membantu Walmart merencanakan stok lebih baik selama periode puncak.
+
+- Penjualan Berdasarkan Holiday Flag
+  Distribusi Weekly_Sales berdasarkan nilai Holiday_Flag (0 untuk minggu non-liburan, 1 untuk minggu liburan)
+
+  ![image](https://github.com/user-attachments/assets/2f35092a-f12c-499b-80ed-649ca22695c6)
+  a. Minggu Non-Liburan (Holiday_Flag = 0):
+  Median penjualan lebih rendah dibandingkan minggu liburan.
+  Terdapat beberapa outlier dengan penjualan sangat tinggi, namun distribusi umumnya lebih terkonsentrasi pada nilai rendah.
+  b. Minggu Liburan (Holiday_Flag = 1):
+  Median penjualan lebih tinggi dibandingkan minggu non-liburan.
+  Variasi penjualan lebih besar, yang menunjukkan dampak signifikan dari liburan terhadap pola penjualan.
 
 ## Data Preparation
 1. Normalisasi Format Tanggal: Kolom Date yang berisi campuran format (dd/mm/yyyy dan dd-mm-yyyy) dinormalisasi menggunakan fungsi .str.replace() dan dikonversi ke tipe datetime.
@@ -145,3 +161,8 @@ Model dapat digunakan untuk membantu manajemen inventaris dan perencanaan strate
 
 **Saran**
 Untuk pengembangan lebih lanjut, pertimbangkan untuk memasukkan variabel tambahan seperti jenis produk atau data promosi.
+
+
+##Referensi:
+1. Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5–32. DOI: 10.1023/A:1010933404324.
+2. Kaggle. (2014). Walmart Recruiting - Store Sales Forecasting. Retrieved from https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting.
